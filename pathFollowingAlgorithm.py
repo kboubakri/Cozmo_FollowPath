@@ -13,9 +13,9 @@ from math import pi
 import time
 import numpy as np
 
-radius = 1  #Acceptable distance from the path in mm
+radius = 3  #Acceptable distance from the path in mm
 deltaT = 0.4    #time between two instructions in s
-deltaD =5  #Look ahead distance in mm
+deltaD =10  #Look ahead distance in mm
 maxSpeed = 25   #mm/s
 error = 0   #mean squarred error in mm
 
@@ -61,4 +61,3 @@ def followComposedTrajectory(robot:cozmo.robot.Robot,pathPositions,pPosition,vl,
         stateVector = newWheelsSpeed(stateVector[0],stateVector[1],[robot.pose.position.x,robot.pose.position.y],pathPositions[subPath],pathPositions[subPath+1],robot.pose.rotation.angle_z.radians,pathPositions)
         subPath = predic.closestPath(subPath,pathPositions,[robot.pose.position.x,robot.pose.position.y])
         i+=1
-    print("Mean error : ",error/i)

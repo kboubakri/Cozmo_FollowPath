@@ -5,6 +5,22 @@
 from math import sqrt,cos,sin,acos,pi,atan2
 import numpy as np
 
+def is_close_to_path(point,end,begin):
+    '''
+        Return true if the orthogonal projection of the robot on a subpath
+        Is either between the two points of the segment
+        Or not too far from one of the extremity
+    '''
+    precision = 15
+    dtot = distanceBetweenPoint(begin[0],begin[1],end[0],end[1]) + precision
+    d1 = distanceBetweenPoint(point[0],point[1],begin[0],begin[1])
+    d2 = distanceBetweenPoint(point[0],point[1],end[0],end[1])
+    print(" max : ",max(d1,d2),"/dtot :",dtot)
+    if max(d1,d2) < dtot:
+        return True
+    else :
+        return False
+
 
 def correctionAngle(angle):
     '''

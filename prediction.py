@@ -74,7 +74,9 @@ def closestPath(lastSubPath,pathPositions,point):
             [d,n] = smallestDistance(pathPositions[i],pathPositions[i+1],point)
             t = positionTarget(n,alg.euclideanVector(pathPositions[i],pathPositions[i+1]))
             #The robot should follow a close path as much as possible
-            if i == lastSubPath or i == lastSubPath+1:
+            begin = pathPositions[lastSubPath]
+            end = pathPositions[lastSubPath+1]
+            if i == lastSubPath and alg.is_close_to_path(n,end,begin):
                 if  d < closest+1 :
                     closest = d
                     number = i
@@ -83,7 +85,9 @@ def closestPath(lastSubPath,pathPositions,point):
                 if  d < closest+1 and alg.is_between(pathPositions[i],n,pathPositions[i+1]):
                     closest = d
                     number = i
-        if number != -1 and closest != 1000:    #if the robot found a patht o follw
+        if number != -1 and closest != 1000:    #if the robot found a patht to follw
+            [d,n] = smallestDistance(pathPositions[number],pathPositions[number+1],point)
+            print("subPath :",number,"  distance :",alg.is_close_to_path(n,end,begin),    "is on the path ?",alg.is_between(pathPositions[number],n,pathPositions[number+1]))
             return number
         else :  # we move to the next path
             return lastSubPath+1

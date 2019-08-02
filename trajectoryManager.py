@@ -14,8 +14,8 @@ loc = ("Trajectories_storing6.xls")
 scale = 1000
 
 # columns in the excel file
-columnX = 4
-columnY = 5
+columnX = 8
+columnY = 9
 
 def importTrajectory0():
     '''
@@ -52,7 +52,7 @@ def importTrajectory1():
 
     j= 0
     i = 0
-    increment = 5   #minimal distance between two points
+    increment = 15   #minimal distance between two points
 
     # While there is something to read in the excel file
     while isinstance(sheet.cell_value(j, columnX),float) :
