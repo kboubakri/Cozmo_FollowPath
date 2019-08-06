@@ -69,7 +69,7 @@ def orientationTarget(pRobot,pTarget):
 def closestPath(lastSubPath,pathPositions,point):
     [number,closest] = [-1,1000]    #path number, distance to robot
     #Every path after the one currently considered and except the last one
-    if lastSubPath < len(pathPositions)-1:
+    if lastSubPath < len(pathPositions)-2:
         for i in range(lastSubPath,(len(pathPositions)-1)):
             [d,n] = smallestDistance(pathPositions[i],pathPositions[i+1],point)
             t = positionTarget(n,alg.euclideanVector(pathPositions[i],pathPositions[i+1]))
@@ -80,14 +80,13 @@ def closestPath(lastSubPath,pathPositions,point):
                 if  d < closest+1 :
                     closest = d
                     number = i
-            else :
+            '''else :
                 #If the closest paths are not ideal, let's consider the other paths
-                if  d < closest+1 and alg.is_between(pathPositions[i],n,pathPositions[i+1]):
+                if  d < closest+1 and alg.is_close_to_path(n,pathPositions[i],pathPositions[i+1]):
                     closest = d
-                    number = i
+                    number = i'''
         if number != -1 and closest != 1000:    #if the robot found a patht to follw
             [d,n] = smallestDistance(pathPositions[number],pathPositions[number+1],point)
-            print("subPath :",number,"  distance :",alg.is_close_to_path(n,end,begin),    "is on the path ?",alg.is_between(pathPositions[number],n,pathPositions[number+1]))
             return number
         else :  # we move to the next path
             return lastSubPath+1

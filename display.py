@@ -61,7 +61,7 @@ def displayAll(pathPositions,pPosition,pPredict,pTarget,oldSpeed,newSpeed,nearea
     plt.axis('equal')
     plt.draw()
     # Save the current image and give it the number i
-    #plt.savefig('CorrespondingVideo{0}.png'.format(i))
+    #plt.savefig('FifthFinalTest{0}.png'.format(i))
     i+=1    #increment the image number
     plt.pause(0.1)
     plt.clf()

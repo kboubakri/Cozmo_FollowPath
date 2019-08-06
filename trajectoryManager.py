@@ -8,14 +8,15 @@ import xlrd
 import numpy as np
 
 # Give the location of the file
-loc = ("Trajectories_storing6.xls")
+loc = ("Trajectories_storing7.xls")
 
 #Give the scale of the draw
 scale = 1000
 
 # columns in the excel file
-columnX = 8
-columnY = 9
+i = 16
+columnX = i
+columnY = i+1
 
 def importTrajectory0():
     '''
@@ -32,7 +33,7 @@ def importTrajectory0():
     increment = 5   #minimal distance between two points
 
     # While there is something to read in the excel file
-    while isinstance(sheet.cell_value(j, columnX),float) :
+    while j < sheet.nrows-1 and isinstance(sheet.cell_value(j, columnX),float):
         X.append(sheet.cell_value(j, columnX)*scale)
         Y.append(sheet.cell_value(j, columnY)*scale)
         j+=1
@@ -52,10 +53,10 @@ def importTrajectory1():
 
     j= 0
     i = 0
-    increment = 15   #minimal distance between two points
+    increment = 30   #minimal distance between two points
 
     # While there is something to read in the excel file
-    while isinstance(sheet.cell_value(j, columnX),float) :
+    while j < sheet.nrows-1 and isinstance(sheet.cell_value(j, columnX),float):
         if j != 0 :
             if np.linalg.norm(np.subtract([X[i-1],Y[i-1]],[sheet.cell_value(j, columnX)*scale,sheet.cell_value(j, columnY)*scale])) > increment:
                 X.append(sheet.cell_value(j, columnX)*scale)
@@ -84,7 +85,7 @@ def importTrajectory2():
     j= 0
     counter = 0
     increment = 10  # One point out of increment is taken
-    while isinstance(sheet.cell_value(counter*increment, columnX),float) :
+    while counter*increment < sheet.nrows-1 and isinstance(sheet.cell_value(counter*increment, columnX),float):
         if j == 0 :
             X.append(sheet.cell_value(counter*increment, columnX)*scale)
             Y.append(sheet.cell_value(counter*increment, columnY)*scale)
@@ -107,9 +108,9 @@ def importTrajectory3():
     sheet = wb.sheet_by_index(0)
 
     i = 0
-    while isinstance(sheet.cell_value(i, 6),float) :
-        X.append(sheet.cell_value(i, 6)*scale)
-        Y.append(sheet.cell_value(i, 7)*scale)
+    while i < sheet.nrows-1 and isinstance(sheet.cell_value(i, columnX),float):
+        X.append(sheet.cell_value(i, columnX)*scale)
+        Y.append(sheet.cell_value(i, columnY)*scale)
         i += 1
     # X and Y are filter :
     # savgol_filter(signal,sizeWindow,Order of the polynom)
@@ -122,7 +123,7 @@ if __name__ == "__main__":
     [X0,Y0] = importTrajectory0()
     [X1,Y1] = importTrajectory1()
     [X2,Y2] = importTrajectory2()
-    [X3,Y3] = importTrajectory3()   #not satisfying
+    #[X3,Y3] = importTrajectory3()
     plt.axis('equal')
     plt.legend()
     plt.show()

@@ -15,7 +15,6 @@ def is_close_to_path(point,end,begin):
     dtot = distanceBetweenPoint(begin[0],begin[1],end[0],end[1]) + precision
     d1 = distanceBetweenPoint(point[0],point[1],begin[0],begin[1])
     d2 = distanceBetweenPoint(point[0],point[1],end[0],end[1])
-    print(" max : ",max(d1,d2),"/dtot :",dtot)
     if max(d1,d2) < dtot:
         return True
     else :
