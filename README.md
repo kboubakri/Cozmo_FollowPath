@@ -18,7 +18,7 @@ Here is the implementation of this algorithm.</p>
 <pre class=" language-bash"><code class="prism  language-bash">pip <span class="token function">install</span> --user requirements.txt
 </code></pre>
 <p>if you have the error :</p>
-<pre><code>Could not find any downloads that satisfy the requirement somepackage
+<pre><code>"Could not find any downloads that satisfy the requirement somepackage"
 </code></pre>
 <p>try :</p>
 <pre class=" language-bash"><code class="prism  language-bash">pip <span class="token function">install</span> --upgrade -r requirements.txt
