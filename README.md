@@ -75,5 +75,10 @@ with theta the current orientation of the robot.</p>
 <td align="right">By how much we want to multiply the scale of the harvested trajectory. Keep in mind that the bigger the trajectory, the better is the tracking. I suggest a scale of 1000</td>
 <td align="center">trajectoryManager</td>
 </tr>
+<tr>
+<td align="left">Precision</td>
+<td align="right">Maximal accepted distance between the orthogonal projection of the robot on a subpath and the subpath. It represents the distance after which the robot must track an other subpath</td>
+<td align="center">algebra</td>
+</tr>
 
 </html>
