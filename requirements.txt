@@ -1,4 +1,4 @@
-certifi==2019.6.16
+certifi==2022.12.7
 cozmo==1.4.10
 cozmoclad==3.4.0
 cycler==0.10.0
